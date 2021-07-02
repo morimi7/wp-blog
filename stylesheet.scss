@@ -1,0 +1,484 @@
+@charset "UTF-8";
+
+/***変数***/
+$main-text: 1.6em;
+$aside-text: 1.4em;
+$border: 1px solid #777;
+
+@mixin phone {
+  @media screen and (max-width: 767px) {  @content  };
+}
+
+@mixin hover{
+  opacity: 0.6;
+  transition: all .2s ease;
+}
+
+/**共通部分**/
+body{
+  font-family: "Noto Sans", "Noto Sans JP", sans-serif;
+  margin: 0 auto;
+  text-align: center;
+  letter-spacing: 0em;
+  line-height: 1.7;
+  font-weight: normal;
+  color: #333;
+  font-size: 62.5%;
+}
+a{
+  text-decoration: none;
+  color: inherit;
+}
+img{
+  max-width: 100%;
+}
+ul,li,p{
+  padding: 0;
+  list-style: none;
+}
+*{
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+  /*text-transform: uppercase;*/
+}
+
+/****ボタン****/
+.more-button{
+  font-size: 1.4em;
+  position: relative;
+  text-transform: uppercase;
+  display: inline-block;
+  &::after{
+    display: block;
+    content: "";
+    width: 82px;
+    height: 1px;
+    border-bottom: $border;
+    position: absolute;
+    bottom: -2.5px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all .2s ease;
+  }
+  &:hover::after{
+    opacity: 0;
+  }
+
+}
+/****タイトル****/
+.h3-title{
+  font-size: 1.8em;
+  font-weight: bold;
+}
+
+.wrapper{
+  width: 91.5%;
+  max-width: 1168px;
+  margin: 0 auto;
+}
+/****ヘッダー****/
+.header{
+  background-color: #fff;
+  &__logo{
+    max-width: 1168px;
+    margin: 0 auto;
+    text-align: left;
+    padding-top: 20px;
+    padding-bottom: 5px;
+
+  }
+  &__link{
+    width: 145px;
+  }
+}
+.main-nav{
+  background: #333;
+  margin: 0 calc(50% - 50vw);
+  width: 100vw;
+  text-transform: uppercase;
+  &__list{
+    display: flex;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    width: 91.5%;
+    max-width: 1168px;
+    margin: 0 auto;
+  }
+  &__item{
+    font-size: 1.4em;
+    padding-right: 61px;
+    color: #fff;
+  }
+  &__link{
+    &:hover{
+      @include hover;
+    }
+  }
+  @include phone(){
+    overflow-x: auto;
+    white-space: nowrap;
+    overflow-scrolling: touch;
+  }
+}
+
+/****ピックアップ****/
+.pickup{
+  margin-top: 43px;
+  &__title{
+    font-size: 28px;
+    text-align: left;
+  }
+  &__list{
+    padding-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 23px;
+    @include phone(){
+      grid-template-columns: repeat(1,3fr);
+      gap: 30px;
+    }
+  }
+  &__text{
+    padding-top: 12px;
+    font-size: $main-text;
+    font-weight: bold;
+    text-align: left;
+  }
+  &__link{
+    margin-top: 7px;
+  }
+}
+
+/****コンテンツ****/
+.container{
+  display: flex;
+  margin-bottom: 138px;
+  @include phone(){
+    margin-top: 90px;
+    margin-bottom: 120px;
+    flex-direction: column;
+  }
+  main{
+    width: 65%;
+    flex-shrink: 0;
+    padding-right: 50px;
+    @include phone(){
+      width: 100%;
+      padding-right: 0;
+    }
+  }
+  aside{
+    width: 35%;
+    padding-right: 14px;
+    margin-top: 70px;
+    @include phone(){
+      width: 100%;
+      padding-right: 0;
+    }
+  }
+}
+/****投稿****/
+.post{
+  margin-top: 78px;
+  &__title{
+    font-size: 2.4em;
+    font-weight: bold;
+    text-align: left;
+    padding-bottom: 5px;
+  }
+  &__meta{
+    display: flex;
+    padding-top: 7px;
+    font-size: 1.4em;
+  }
+  &__date{
+    padding-right: 30px;
+  }
+  &__image{
+    padding-top: 8px;
+    width: 100%;
+    height: auto;
+  }
+  &__text{
+    display: block;
+    padding-top: 5px;
+    font-size: $main-text;
+    text-align: left;
+    width: 88%;
+    margin: 0 auto;
+    font-weight: normal;
+    @include phone(){
+      width: 85%;
+    }
+  }
+  &__link{
+    margin-top: 18px;
+  }
+}
+.pager{
+  padding-top: 110px;
+  font-size: 1.6em;
+  display: flex;
+  max-width: 300px;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+/***カテゴリー,月別ページ***/
+.category{
+  &__title{
+    margin-top: 45px;
+    margin-bottom: -28px;
+    font-size: 2.8em;
+    font-weight: 700;
+    padding-bottom: 10px;
+    text-align: left;
+    border-bottom: solid 1px #777;
+  }
+}
+
+/****サイドバー****/
+.prof{
+  &__image{
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+  }
+  &__title{
+    padding-top: 18px;
+  }
+  &__text{
+    font-size: $aside-text;
+    padding-top: 16px;
+    text-align: left;
+    margin: 0 auto;
+  }
+}
+
+/*ランキングプラグイン*/
+.widget{
+  margin-top: 40px;
+}
+.wpp-list, .wpp-list-with-thumbnails{
+  padding-top: 20px;
+  a{
+    display: block;
+    &:hover{
+      @include hover;
+    }
+  }
+}
+.wpp-post-title{
+  padding-top: 40px;
+  font-size: 16px;
+  text-align: left;
+}
+
+/***ウィジェット月別アーカイブ*/
+.widget_archive{
+    ul{
+      padding-top: 20px;
+    }
+    li{
+      font-size: $aside-text;
+      line-height: 60px;
+      text-align: left;
+      border-top: $border;
+      padding-left: 25px;
+      &:last-child{
+        border-bottom: $border;
+      }
+    }
+    a{
+      display: block;
+      &:hover{
+        @include hover;
+      }
+    }
+}
+
+/***お問い合わせ***/
+input[type="text"],
+input[type="email"],
+textarea{
+  width: 100%;
+  border: solid 1px #c8c8c8;
+  padding: 8px;
+  margin-bottom: 10px;
+  &:focus{
+    outline: none;
+  }
+}
+button[type="submit"]{
+  width: 100%;
+  display: block;
+  background-color: #333;
+  color: #fff;
+  padding: 15px 0;
+  cursor: pointer;
+}
+
+
+/****フッター****/
+footer{
+  background: #f7f7f7;
+  width: 100vw;
+  margin: 0 calc(50% - 50vw);
+}
+.footer-content{
+  width: 91.5%;
+  max-width: 1168px;
+  margin: 0 auto;
+  padding-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  @include phone(){
+    grid-template-columns: repeat(1,3fr);
+  }
+}
+.about{
+  margin-right: 40px;
+  flex-shrink: 0;
+  text-align: left;
+  @include phone(){
+    margin-right: 0;
+  }
+  &__text{
+    padding-top: 25px;
+    font-size: $aside-text;
+  }
+  &__list{
+    padding-top: 10px;
+    font-size: $aside-text;
+  }
+  &__link{
+    padding-bottom: 5px;
+    padding-left: 19px;
+    position: relative;
+    display: block;
+    &::before{
+      content: "";
+      position: absolute;
+      display: block;
+      width: 14px;
+      height: 12px;
+      background: url(img/listmark@2x.png) no-repeat;
+      background-size: contain;
+      top: 20%;
+      left: 0;
+    }
+    &:hover{
+      @include hover;
+    }
+  }
+}
+.menu{
+  margin-left: 25px;
+  margin-right: 20px;
+  @include phone(){
+    margin-right: 0;
+    margin-left: 0;
+    margin-top: 55px;
+  }
+  &__title{
+    text-align: left;
+  }
+  &__list{
+    margin-top: 25px;
+    text-transform: uppercase;
+  }
+  &__item{
+    font-size: $aside-text;
+    text-align: left;
+    line-height: 50px;
+    padding-left: 15px;
+    border-top: $border;
+    &:last-child{
+      border-bottom: $border;
+    }
+  }
+  &__link{
+    display: block;
+    &:hover{
+      @include hover;
+    }
+  }
+}
+.twitter{
+  margin-left: 40px;
+  @include phone(){
+    margin-left: 0;
+    margin-top: 30px;
+  }
+  &__title{
+    margin-bottom: 32px;
+    text-align: left;
+  }
+}
+
+.copy{
+  display: block;
+  padding-top: 75px;
+  padding-bottom: 12px;
+  font-size: 1.2em;
+}
+
+/****pager****/
+.wp-pagenavi{
+  margin-top: 85px;
+  font-size: 16px;
+  .previouspostslink,.page,.nextpostslink{
+    border: none;
+    margin: 0 10px;
+    &:hover{
+      opacity: 0.6;
+    }
+  }
+  span.current{
+    border: none;
+    font-weight: normal;
+  }
+}
+
+/***検索フォーム***/
+.searchform {
+  margin: 34px 0 40px 0;
+  position: relative;
+}
+.searchfield {
+    font-size: 16px;
+    width: 100%;
+    padding: 10px;
+    border: solid 1px #c8c8c8;
+    &:focus{
+      outline: none;
+    }
+}
+button[type="searchsubmit"] {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  img{
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/***検索結果***/
+.no-result-message{
+  padding-top: 100px;
+}
+
+/***404***/
+.not-found{
+  margin-top: 45px;
+  margin-bottom: -28px;
+  font-size: 2.8em;
+  font-weight: 700;
+  padding-bottom: 10px;
+  text-align: left;
+}
